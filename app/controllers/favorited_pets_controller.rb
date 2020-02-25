@@ -1,0 +1,2 @@
+class FavoritedPetsController < ApplicationController
+end
