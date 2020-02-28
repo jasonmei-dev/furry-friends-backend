@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_214818) do
+ActiveRecord::Schema.define(version: 2020_02_28_211732) do
 
-  create_table "favorited_pets", force: :cascade do |t|
-    t.integer "api_id"
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "pet_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["pet_id"], name: "index_likes_on_pet_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "favorited_pet_id"
+  create_table "pets", force: :cascade do |t|
+    t.integer "pet_api_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["favorited_pet_id"], name: "index_lists_on_favorited_pet_id"
-    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +40,6 @@ ActiveRecord::Schema.define(version: 2020_02_25_214818) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "likes", "pets"
+  add_foreign_key "likes", "users"
 end
