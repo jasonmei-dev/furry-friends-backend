@@ -11,8 +11,19 @@ class Api::V1::PetfinderController < ApplicationController
     render json: response
   end
 
-  def dogs
-    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&limit=100&type=dog"
+  def pet_details
+    pet_id = params[:id] # id from API
+    url = "https://api.petfinder.com/v2/animals/#{pet_id}"
+    headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
+
+    response = RestClient.get(url, headers)
+
+    render json: response
+  end
+
+  def get_type
+    type = params[:type]   # get type through params from frontend
+    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&limit=100&type=#{type}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
     response = RestClient.get(url, headers)
