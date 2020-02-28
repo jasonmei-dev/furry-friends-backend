@@ -5,7 +5,8 @@ Rails.application.routes.draw do
       resources :favorited_pets
       resources :users
       get '/pets', to: 'petfinder#index'
-      get '/dogs', to: 'petfinder#dogs'
+      get '/pets/:id', to: 'petfinder#pet_details'
+      get '/:type', to: 'petfinder#get_type'
     end
    end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
