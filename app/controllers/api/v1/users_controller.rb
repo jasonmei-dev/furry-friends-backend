@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
 
     if user.save
       session[:user_id] = user.id
-      render json: user, status: :created
+      render json: UserSerializer.new(user), status: :created
     else
       resp = {
         error: user.errors.full_messages.to_sentence

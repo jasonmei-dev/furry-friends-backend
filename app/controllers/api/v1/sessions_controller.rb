@@ -7,14 +7,14 @@ class Api::V1::SessionsController < ApplicationController
     if user && user.authenticate(session_params[:password])
         session[:user_id] = user.id
 
-        render json: user, status: :ok
+        render json: UserSerializer.new(user), status: :ok
       else
         render json: { error: "Invalid Credentials" }, status: :unauthorized
       end
   end
 
   def get_current_user
-    render json: current_user
+    render json: UserSerializer.new(current_user)
   end
 
   def destroy
