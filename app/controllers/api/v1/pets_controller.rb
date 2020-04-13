@@ -3,7 +3,7 @@ class Api::V1::PetsController < ApplicationController
   before_action :get_token
 
   def index
-    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&limit=100"
+    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&limit=50"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
     response = RestClient.get(url, headers)
