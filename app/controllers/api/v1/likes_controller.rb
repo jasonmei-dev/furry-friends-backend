@@ -1,18 +1,19 @@
 class Api::V1::LikesController < ApplicationController
   def index
-    myPets = current_user.pets
-    render json: myPets
+    likes = current_user.likes.map { |like| LikeSerializer.new(like)}
+    render json: likes
   end
 
   def create
+    # byebug
     if Pet.find_by(pet_api_id: params[:pet][:id])
       petId = Pet.find_by(pet_api_id: params[:pet][:id]).id
 
       if current_user.likes.where(pet_id: petId).length > 0
         render json: { error: 'Pet already favorited!' }
       else
-        just_added = Like.create(user_id: current_user.id, pet_id: petId)
-        render json: just_added.pet
+        new_like = Like.create(user_id: current_user.id, pet_id: petId)
+        render json: LikeSerializer.new(new_like)
       end
 
     else
@@ -28,9 +29,20 @@ class Api::V1::LikesController < ApplicationController
         photos: params[:pet][:photos],
         contact: params[:pet][:contact]
       )
-      just_added = Like.create(user_id: current_user.id, pet_id: newPet.id)
-      render json: just_added.pet
+      new_like = Like.create(user_id: current_user.id, pet_id: newPet.id)
+      render json: LikeSerializer.new(new_like)
     end
   end
 
+  def destroy
+    byebug
+    likeId = params[:like][:id]
+    like = Like.destroy(likeId)
+    render json: like
+  end
+
+  def show
+    like = Like.find_by(id: params[:id])
+    render json: LikeSerializer.new(like)
+  end
 end
