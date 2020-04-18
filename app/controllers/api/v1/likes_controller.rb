@@ -35,14 +35,9 @@ class Api::V1::LikesController < ApplicationController
   end
 
   def destroy
-    byebug
-    likeId = params[:like][:id]
+    likeId = params[:id]
     like = Like.destroy(likeId)
-    render json: like
-  end
-
-  def show
-    like = Like.find_by(id: params[:id])
     render json: LikeSerializer.new(like)
   end
+
 end
