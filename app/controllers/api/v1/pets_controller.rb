@@ -3,7 +3,7 @@ class Api::V1::PetsController < ApplicationController
   before_action :get_token
 
   def index
-    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&limit=50"
+    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
     response = RestClient.get(url, headers)
@@ -23,7 +23,9 @@ class Api::V1::PetsController < ApplicationController
 
   def get_type
     type = params[:type]   # get type through params from frontend
-    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&limit=100&type=#{type}"
+    type_fixed = type.gsub(/\s/, "").gsub(/\W/, "-")
+
+    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type_fixed}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
     response = RestClient.get(url, headers)
