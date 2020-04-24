@@ -5,4 +5,5 @@ class Pet < ApplicationRecord
   serialize :breeds
   serialize :photos
   serialize :contact
+  serialize :primary_photo_cropped
 end
