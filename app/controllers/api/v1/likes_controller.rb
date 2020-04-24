@@ -27,7 +27,8 @@ class Api::V1::LikesController < ApplicationController
         size: params[:pet][:size],
         breeds: params[:pet][:breeds],
         photos: params[:pet][:photos],
-        contact: params[:pet][:contact]
+        contact: params[:pet][:contact],
+        primary_photo_cropped: params[:pet][:primary_photo_cropped]
       )
       new_like = Like.create(user_id: current_user.id, pet_id: newPet.id)
       render json: LikeSerializer.new(new_like)
