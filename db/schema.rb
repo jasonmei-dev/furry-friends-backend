@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_004601) do
+ActiveRecord::Schema.define(version: 2020_04_23_150410) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_004601) do
     t.string "breeds"
     t.string "photos"
     t.string "contact"
+    t.string "primary_photo_cropped"
   end
 
   create_table "users", force: :cascade do |t|
