@@ -23,9 +23,9 @@ class Api::V1::PetsController < ApplicationController
 
   def get_type
     type = params[:type]   # get type through params from frontend
-    type_fixed = type.gsub(/\s/, "").gsub(/\W/, "-")
+    # type_fixed = type.gsub(/\s/, "").gsub(/\W/, "-")
 
-    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type_fixed}"
+    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
     response = RestClient.get(url, headers)
