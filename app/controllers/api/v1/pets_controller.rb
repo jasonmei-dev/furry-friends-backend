@@ -23,9 +23,11 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def get_type
+    # byebug
     type = params[:type]   # get type through params from frontend
+    page = params[:page]
 
-    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type}"
+    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type}&page=#{page}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
     response = RestClient.get(url, headers)
