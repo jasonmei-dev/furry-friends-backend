@@ -2,8 +2,18 @@ class Api::V1::PetsController < ApplicationController
   require 'rest-client'
   before_action :get_token
 
-  def all
-    page = params[:page]
+  def index
+    # page = params[:page]
+    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance"
+    headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
+
+    response = RestClient.get(url, headers)
+
+    render json: response
+  end
+
+  def get_all
+    page = params[:page] || '1'
     url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&page=#{page}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
@@ -23,8 +33,7 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def get_type
-    # byebug
-    type = params[:type]   # get type through params from frontend
+    type = params[:type] # get type through params from frontend
     page = params[:page]
 
     url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type}&page=#{page}"
