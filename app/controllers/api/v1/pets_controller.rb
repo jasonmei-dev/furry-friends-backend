@@ -3,17 +3,7 @@ class Api::V1::PetsController < ApplicationController
   before_action :get_token
 
   def index
-    # page = params[:page]
-    url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance"
-    headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
-
-    response = RestClient.get(url, headers)
-
-    render json: response
-  end
-
-  def get_all
-    page = params[:page] || '1'
+    page = request.headers[:page]
     url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&page=#{page}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
@@ -21,6 +11,16 @@ class Api::V1::PetsController < ApplicationController
 
     render json: response
   end
+
+  # def get_all
+  #   page = params[:page]
+  #   url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&page=#{page}"
+  #   headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
+  #
+  #   response = RestClient.get(url, headers)
+  #
+  #   render json: response
+  # end
 
   def show
     pet_id = params[:id] # id from API
@@ -33,8 +33,12 @@ class Api::V1::PetsController < ApplicationController
   end
 
   def get_type
-    type = params[:type] # get type through params from frontend
-    page = params[:page]
+    # type = params[:type] # get type through params from frontend
+    # page = params[:page]
+
+    type = request.headers[:type]
+    page = request.headers[:page]
+    # byebug
 
     url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type}&page=#{page}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
