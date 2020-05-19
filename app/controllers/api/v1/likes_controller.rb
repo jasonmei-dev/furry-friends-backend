@@ -1,11 +1,7 @@
 class Api::V1::LikesController < ApplicationController
   def index
-    if current_user
-      likes = current_user.likes.map { |like| LikeSerializer.new(like)}
-      render json: likes
-    else
-      render json: []
-    end
+    likes = current_user.likes.map { |like| LikeSerializer.new(like)}
+    render json: likes
   end
 
   def create
