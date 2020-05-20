@@ -12,16 +12,6 @@ class Api::V1::PetsController < ApplicationController
     render json: response
   end
 
-  # def get_all
-  #   page = params[:page]
-  #   url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&page=#{page}"
-  #   headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
-  #
-  #   response = RestClient.get(url, headers)
-  #
-  #   render json: response
-  # end
-
   def show
     pet_id = params[:id] # id from API
     url = "https://api.petfinder.com/v2/animals/#{pet_id}"
@@ -35,11 +25,8 @@ class Api::V1::PetsController < ApplicationController
   def get_type
     # type = params[:type] # get type through params from frontend
     # page = params[:page]
-
     type = request.headers[:type]
     page = request.headers[:page]
-    # byebug
-
     url = "https://api.petfinder.com/v2/animals?location=#{current_user.postcode}&sort=distance&type=#{type}&page=#{page}"
     headers = { Authorization: "#{@token["token_type"]} #{@token["access_token"]}" }
 
