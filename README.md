@@ -1,24 +1,16 @@
-# README
+# Furry Friends Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the backend repository for Furry Friends. Furry Friends is a single page web application where you can search through adoptable pets and view pets' details and contact information. The user has the ability to "favorite" a pet and add it to their profile page, as well as edit the user information.
 
-Things you may want to cover:
+### Installation & Usage
 
-* Ruby version
+1. Open and run `$ bundle install`
+2. Run `$ rails db:migrate` to run migrations
+3. Run `$ rails db:seed` to see database
+4. Run `$ rails server` to start up Rails server at `localhost:3001`
 
-* System dependencies
+Frontend repository can be found here: https://github.com/jmei403/furry-friends-frontend
 
-* Configuration
+### Contributing
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Bug reports and pull requests are welcome on GitHub at https://github.com/jmei403/furry-friends-backend. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
