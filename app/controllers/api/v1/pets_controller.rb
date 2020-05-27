@@ -42,8 +42,8 @@ class Api::V1::PetsController < ApplicationController
 
     payload = {
       grant_type: 'client_credentials',
-      client_id: 'mCkpfVdzgRe5tTbgQlEQdT0AiIT9DGeIVwiWcVK37t6siNVIra',
-      client_secret: '1GX00eIukyRAAS5jgL5f1MbmjtJ1NJZBB4lP79Um'
+      client_id: ENV['CLIENT_ID'],
+      client_secret: ENV['CLIENT_SECRET']
     }
 
     response = RestClient.post(url, payload)
