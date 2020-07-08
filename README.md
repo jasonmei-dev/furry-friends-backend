@@ -9,7 +9,7 @@ This is the backend repository for Furry Friends. Furry Friends is a single page
 3. Run `$ rails db:seed` to see database
 4. Run `$ rails server` to start up Rails server at `localhost:3001`
 
-Frontend repository can be found here: https://github.com/jmei403/furry-friends-frontend
+Frontend repository can be found here: https://github.com/jasonmei-dev/furry-friends-frontend
 
 ### Contributing
 
