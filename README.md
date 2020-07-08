@@ -13,4 +13,4 @@ Frontend repository can be found here: https://github.com/jasonmei-dev/furry-fri
 
 ### Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jmei403/furry-friends-backend. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jasonmei-dev/furry-friends-backend. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
